@@ -16,8 +16,6 @@ This application is built with the following technologies:
   - [Installation](#installation)
   - [Usage](#usage)
   - [License](#license)
-  - [Contributing](#contributing)
-  - [Tests](#tests)
   - [Questions](#questions)
   
 ## Installation
@@ -38,10 +36,7 @@ To install PWA click the download icon in the address bar of your browser.
 ## License
 This is licensed under the MIT license. See the badge for the link to the license information.
   
-## Tests
 
-
-  
 ## Questions
 If you have questions, reach out via email or GitHub  
 Gitub:  [GitHub Repository](https//github.com/roo116)  
