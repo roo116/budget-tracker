@@ -37,6 +37,7 @@ function saveRecord(record) {
 function uploadBudget() {
   // open transactiont to db
   const transaction = db.transaction(["new_budget"], "readwrite");
+  console.log(">>> uploadbudget transaction = ", transaction);
   const budgetObjectStore = transaction.objectStore("new_budget");
   const getAll = budgetObjectStore.getAll();
 
@@ -44,7 +45,8 @@ function uploadBudget() {
   getAll.onsuccess = function () {
     // if data in localstore send to API
     if (getAll.result.length > 0) {
-      fetch("/api/transacton", {
+      console.log("get.All.result ", getAll.result);
+      fetch("/api/transaction", {
         method: "POST",
         body: JSON.stringify(getAll.result),
         headers: {
