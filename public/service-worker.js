@@ -8,7 +8,7 @@ const FILES_TO_CACHE = [
   "./js/idb.js",
 ];
 
-// Install the service worker
+// Install
 self.addEventListener('install', function(evt) {
   evt.waitUntil(
     caches.open(CACHE_NAME).then(cache => {
@@ -20,7 +20,7 @@ self.addEventListener('install', function(evt) {
   self.skipWaiting();
 });
 
-// Activate the service worker and remove old data from the cache
+// Activate 
 self.addEventListener('activate', function(evt) {
   evt.waitUntil(
     caches.keys().then(keyList => {
@@ -38,7 +38,7 @@ self.addEventListener('activate', function(evt) {
   self.clients.claim();
 });
 
-// Intercept fetch requests
+// Intercept
 self.addEventListener('fetch', function(evt) {
   if (evt.request.url.includes('/api/')) {
     evt.respondWith(
@@ -46,16 +46,14 @@ self.addEventListener('fetch', function(evt) {
         .open(DATA_CACHE_NAME)
         .then(cache => {
           return fetch(evt.request)
-            .then(response => {
-              // If the response was good, clone it and store it in the cache.
+            .then((response) => {
               if (response.status === 200) {
                 cache.put(evt.request.url, response.clone());
               }
 
               return response;
             })
-            .catch(err => {
-              // Network request failed, try to get it from the cache.
+            .catch((err) => {
               return cache.match(evt.request);
             });
         })
@@ -71,8 +69,7 @@ self.addEventListener('fetch', function(evt) {
         if (response) {
           return response;
         } else if (evt.request.headers.get('accept').includes('text/html')) {
-          // return the cached home page for all requests for html pages
-          return caches.match('/');
+          return caches.match("/");
         }
       });
     })
